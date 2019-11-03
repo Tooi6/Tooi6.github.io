@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        REST架构以及RESTful？ - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是REST？"><span class="toc-text">什么是REST？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#REST架构的主要原则"><span class="toc-text">REST架构的主要原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是RESTful风格？"><span class="toc-text">什么是RESTful风格？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API设计"><span class="toc-text">API设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设计原则"><span class="toc-text">设计原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求方式"><span class="toc-text">请求方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态码"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求参数"><span class="toc-text">请求参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应参数"><span class="toc-text">响应参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异常响应"><span class="toc-text">异常响应</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        REST架构以及RESTful？
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-10-28 23:16:34</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#RESTful" title="RESTful">RESTful</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#架构风格" title="架构风格">架构风格</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h4 id="什么是REST？"><a href="#什么是REST？" class="headerlink" title="什么是REST？"></a>什么是REST？</h4><blockquote>
+<p><strong>REST（Representational State Transfer）</strong> 表象化状态转变（表述性状态转变），在2000年被提出，基于HTTP、URI、XML、JSON等标准和协议，支持<strong>轻量级、跨平台、跨语言</strong>的架构设计。是Web服务的一种新的<strong>架构风格</strong>（一种思想）。 </p>
+</blockquote>
+<h4 id="REST架构的主要原则"><a href="#REST架构的主要原则" class="headerlink" title="REST架构的主要原则"></a>REST架构的主要原则</h4><ul>
+<li>对网络上所有的资源都有一个<strong>资源标志符</strong>。</li>
+<li>对资源的操作<strong>不会</strong>改变标识符。</li>
+<li>同一资源有多种表现形式（xml、json）</li>
+<li>所有操作都是<strong>无状态</strong>的（Stateless） </li>
+</ul>
+<blockquote>
+<p><strong>无状态性：</strong> 使得客户端和服务器端不必保存对方的详细信息，服务器只需要处理当前的请求，不需了解请求的历史。可以更容易的释放资源，让服务器利用Pool（连接池）技术来提高稳定性和性能。  </p>
+</blockquote>
+<h4 id="什么是RESTful风格？"><a href="#什么是RESTful风格？" class="headerlink" title="什么是RESTful风格？"></a>什么是RESTful风格？</h4><blockquote>
+<p>RESTful是一种常见的<strong>REST应用</strong>，是遵循REST风格的<strong>web服务</strong>，REST式的web服务是一种ROA（面向资源的架构）。 </p>
+</blockquote>
+<h3 id="API设计"><a href="#API设计" class="headerlink" title="API设计"></a>API设计</h3><h4 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h4><ul>
+<li>URI 不能包含动词，只能是名词  <blockquote>
+<p>形容词也是可以使用的，但是尽量少用  </p>
+</blockquote>
+</li>
+<li>API 的名词要以复数进行命名  </li>
+<li>命名名词的时候，要使用小写、数字及下划线来区分多个单词  <blockquote>
+<p>样的设计是为了与 json 对象及属性的命名方案保持一致  </p>
+</blockquote>
+<h4 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h4></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>http方法</th>
+<th>资源操作</th>
+<th>幂等</th>
+<th>安全</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>SELECT</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>INSERT</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>UPDATE</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>DELETE</td>
+<td>是</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<h4 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>请求成功</td>
+</tr>
+<tr>
+<td>201</td>
+<td>创建成功</td>
+</tr>
+<tr>
+<td>400</td>
+<td>错误的请求</td>
+</tr>
+<tr>
+<td>401</td>
+<td>未验证</td>
+</tr>
+<tr>
+<td>403</td>
+<td>被拒绝</td>
+</tr>
+<tr>
+<td>404</td>
+<td>无法找到</td>
+</tr>
+<tr>
+<td>409</td>
+<td>资源冲突</td>
+</tr>
+<tr>
+<td>500</td>
+<td>服务器内部错误</td>
+</tr>
+</tbody></table>
+<h4 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h4><ul>
+<li><strong>对请求参数进行限制说明，写明参数要求</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">【POST】     /v1/users                             // 创建用户信息</span><br><span class="line">请求内容</span><br><span class="line">&#123;</span><br><span class="line">    &quot;username&quot;: &quot;Tooi&quot;,                 // 必填, 用户名称, max 20</span><br><span class="line">    &quot;password&quot;: &quot;123456&quot;,              // 必填, 用户密码, max 20</span><br><span class="line">    &quot;email&quot;: &quot;tooi997@163.com&quot;,     // 选填, 电子邮箱, max 32</span><br><span class="line">    &quot;sex&quot;: 1                           // 必填, 用户性别[1-男 2-女 99-未知]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="响应参数"><a href="#响应参数" class="headerlink" title="响应参数"></a>响应参数</h4><ul>
+<li><strong>单条数据，直接返回json</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">&#123;</span><br><span class="line">    &quot;id&quot; : &quot;01&quot;,</span><br><span class="line">    &quot;name&quot; : &quot;Tooi6&quot;,</span><br><span class="line">    &quot;created_time&quot;: 2019-10-26,</span><br><span class="line">    &quot;updated_time&quot;: 2019-10-26,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>多条数据，封装结构体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">&#123;</span><br><span class="line">    &quot;count&quot;:100,</span><br><span class="line">    &quot;items&quot;:[</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;id&quot; : &quot;01&quot;,</span><br><span class="line">            &quot;name&quot; : &quot;Tooi6&quot;,</span><br><span class="line">            &quot;created_time&quot;: 2019-10-26,</span><br><span class="line">            &quot;updated_time&quot;: 2019-10-26,</span><br><span class="line">            ...</span><br><span class="line">        &#125;,</span><br><span class="line">        ...</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="异常响应"><a href="#异常响应" class="headerlink" title="异常响应"></a>异常响应</h4><pre><code>HTTP/1.1 400 Bad Request
+Content-Type: application/json
+{
+    &quot;code&quot;: &quot;INVALID_ARGUMENT&quot;,
+    &quot;message&quot;: &quot;{error message}&quot;,
+    &quot;cause&quot;: &quot;{cause message}&quot;,
+    &quot;request_id&quot;: &quot;01234567-89ab-cdef-0123-456789abcdef&quot;,
+    &quot;host_id&quot;: &quot;{server identity}&quot;,
+    &quot;server_time&quot;: &quot;2014-01-01T12:00:00Z&quot;
+}</code></pre>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

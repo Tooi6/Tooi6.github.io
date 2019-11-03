@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Validation（jQuery+Spring） - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery-Validation"><span class="toc-text">jQuery Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DEMO"><span class="toc-text">DEMO</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Validation"><span class="toc-text">Spring Validation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DEMO-1"><span class="toc-text">DEMO</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Validation（jQuery+Spring）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-10-28 23:16:34</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Validation" title="Validation">Validation</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#jQuery" title="jQuery">jQuery</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Spring" title="Spring">Spring</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="jQuery-Validation"><a href="#jQuery-Validation" class="headerlink" title="jQuery Validation"></a>jQuery Validation</h3><blockquote>
+<p>jQuery Validation 前端表单验证框架<br>下载：<a href="https://github.com/jquery-validation/jquery-validation/releases/tag/1.19.1" target="_blank" rel="noopener">https://github.com/jquery-validation/jquery-validation/releases/tag/1.19.1</a><br>官方文档：<a href="https://jqueryvalidation.org/documentation/" target="_blank" rel="noopener">https://jqueryvalidation.org/documentation/</a>  </p>
+</blockquote>
+<h4 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h4><blockquote>
+<p>来源：<a href="https://www.runoob.com/jquery/jquery-plugin-validate.html" target="_blank" rel="noopener">https://www.runoob.com/jquery/jquery-plugin-validate.html</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#引入js  </span><br><span class="line">&lt;!-- jQuery Validation 1.14.0 --&gt;</span><br><span class="line">&lt;script src=&quot;../assets/jquery-validation-1.14.0/lib/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;../assets/jquery-validation-1.14.0/dist/jquery.validate.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;../assets/jquery-validation-1.14.0/dist/localization/messages_zh.js&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">#初始化脚本</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$.validator.setDefaults(&#123;</span><br><span class="line">    submitHandler: function() &#123;</span><br><span class="line">      alert(&quot;提交事件!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">$().ready(function() &#123;</span><br><span class="line">    $(&quot;#commentForm&quot;).validate();</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">#引入规则</span><br><span class="line">&lt;form class=&quot;cmxform&quot; id=&quot;commentForm&quot; method=&quot;get&quot; action=&quot;&quot;&gt;</span><br><span class="line">  &lt;fieldset&gt;</span><br><span class="line">    &lt;legend&gt;输入您的名字，邮箱，URL，备注。&lt;/legend&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;label for=&quot;cname&quot;&gt;Name (必需, 最小两个字母)&lt;/label&gt;</span><br><span class="line">      &lt;input id=&quot;cname&quot; name=&quot;name&quot; minlength=&quot;2&quot; type=&quot;text&quot; required&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;label for=&quot;cemail&quot;&gt;E-Mail (必需)&lt;/label&gt;</span><br><span class="line">      &lt;input id=&quot;cemail&quot; type=&quot;email&quot; name=&quot;email&quot; required&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;label for=&quot;curl&quot;&gt;URL (可选)&lt;/label&gt;</span><br><span class="line">      &lt;input id=&quot;curl&quot; type=&quot;url&quot; name=&quot;url&quot;&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;label for=&quot;ccomment&quot;&gt;备注 (必需)&lt;/label&gt;</span><br><span class="line">      &lt;textarea id=&quot;ccomment&quot; name=&quot;comment&quot; required&gt;&lt;/textarea&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;input class=&quot;submit&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/fieldset&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Validation"><a href="#Spring-Validation" class="headerlink" title="Spring Validation"></a>Spring Validation</h3><blockquote>
+<p>官方文档：<a href="https://spring.io/guides/gs/validating-form-input/" target="_blank" rel="noopener">https://spring.io/guides/gs/validating-form-input/</a>  </p>
+</blockquote>
+<h4 id="DEMO-1"><a href="#DEMO-1" class="headerlink" title="DEMO"></a>DEMO</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line">#pom.xml  </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;5.3.4.Final&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">#定义工具类</span><br><span class="line">/**</span><br><span class="line"> * JSR303 Validator(Hibernate Validator)工具类.</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * ConstraintViolation 中包含 propertyPath, message 和 invalidValue 等信息.</span><br><span class="line"> * 提供了各种 convert 方法，适合不同的 i18n 需求:</span><br><span class="line"> * 1. List&lt;String&gt;, String 内容为 message</span><br><span class="line"> * 2. List&lt;String&gt;, String 内容为 propertyPath + separator + message</span><br><span class="line"> * 3. Map&lt;propertyPath, message&gt;</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * 详情见wiki: https://github.com/springside/springside4/wiki/HibernateValidator</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;Title: BeanValidator&lt;/p&gt;</span><br><span class="line"> * &lt;p&gt;Description: &lt;/p&gt;</span><br><span class="line"> *</span><br><span class="line"> * @author Lusifer</span><br><span class="line"> * @version 1.0.0</span><br><span class="line"> * @date 2018/6/26 17:21</span><br><span class="line"> */</span><br><span class="line">public class BeanValidator &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private static Validator validator;</span><br><span class="line"></span><br><span class="line">    public static void setValidator(Validator validator) &#123;</span><br><span class="line">        BeanValidator.validator = validator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 调用 JSR303 的 validate 方法, 验证失败时抛出 ConstraintViolationException.</span><br><span class="line">     */</span><br><span class="line">    private static void validateWithException(Validator validator, Object object, Class&lt;?&gt;... groups) throws ConstraintViolationException &#123;</span><br><span class="line">        Set constraintViolations = validator.validate(object, groups);</span><br><span class="line">        if (!constraintViolations.isEmpty()) &#123;</span><br><span class="line">            throw new ConstraintViolationException(constraintViolations);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 ConstraintViolationException 中的 Set&lt;ConstraintViolations&gt; 中为 List&lt;message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractMessage(ConstraintViolationException e) &#123;</span><br><span class="line">        return extractMessage(e.getConstraintViolations());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 Set&lt;ConstraintViolation&gt; 为 List&lt;message&gt;</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractMessage(Set&lt;? extends ConstraintViolation&gt; constraintViolations) &#123;</span><br><span class="line">        List&lt;String&gt; errorMessages = new ArrayList&lt;&gt;();</span><br><span class="line">        for (ConstraintViolation violation : constraintViolations) &#123;</span><br><span class="line">            errorMessages.add(violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        return errorMessages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 ConstraintViolationException 中的 Set&lt;ConstraintViolations&gt; 为 Map&lt;property, message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static Map&lt;String, String&gt; extractPropertyAndMessage(ConstraintViolationException e) &#123;</span><br><span class="line">        return extractPropertyAndMessage(e.getConstraintViolations());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 Set&lt;ConstraintViolation&gt; 为 Map&lt;property, message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static Map&lt;String, String&gt; extractPropertyAndMessage(Set&lt;? extends ConstraintViolation&gt; constraintViolations) &#123;</span><br><span class="line">        Map&lt;String, String&gt; errorMessages = new HashMap&lt;&gt;();</span><br><span class="line">        for (ConstraintViolation violation : constraintViolations) &#123;</span><br><span class="line">            errorMessages.put(violation.getPropertyPath().toString(), violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        return errorMessages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 ConstraintViolationException 中的 Set&lt;ConstraintViolations&gt; 为 List&lt;propertyPath message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractPropertyAndMessageAsList(ConstraintViolationException e) &#123;</span><br><span class="line">        return extractPropertyAndMessageAsList(e.getConstraintViolations(), &quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 Set&lt;ConstraintViolations&gt; 为 List&lt;propertyPath message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractPropertyAndMessageAsList(Set&lt;? extends ConstraintViolation&gt; constraintViolations) &#123;</span><br><span class="line">        return extractPropertyAndMessageAsList(constraintViolations, &quot; &quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 ConstraintViolationException 中的 Set&lt;ConstraintViolations&gt; 为 List&lt;propertyPath + separator + message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractPropertyAndMessageAsList(ConstraintViolationException e, String separator) &#123;</span><br><span class="line">        return extractPropertyAndMessageAsList(e.getConstraintViolations(), separator);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 辅助方法, 转换 Set&lt;ConstraintViolation&gt; 为 List&lt;propertyPath + separator + message&gt;.</span><br><span class="line">     */</span><br><span class="line">    private static List&lt;String&gt; extractPropertyAndMessageAsList(Set&lt;? extends ConstraintViolation&gt; constraintViolations, String separator) &#123;</span><br><span class="line">        List&lt;String&gt; errorMessages = new ArrayList&lt;&gt;();</span><br><span class="line">        for (ConstraintViolation violation : constraintViolations) &#123;</span><br><span class="line">            errorMessages.add(violation.getPropertyPath() + separator + violation.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        return errorMessages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 服务端参数有效性验证</span><br><span class="line">     *</span><br><span class="line">     * @param object 验证的实体对象</span><br><span class="line">     * @param groups 验证组</span><br><span class="line">     * @return 验证成功：返回 null；验证失败：返回错误信息</span><br><span class="line">     */</span><br><span class="line">    public static String validator(Object object, Class&lt;?&gt;... groups) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            validateWithException(validator, object, groups);</span><br><span class="line">        &#125; catch (ConstraintViolationException ex) &#123;</span><br><span class="line">            List&lt;String&gt; list = extractMessage(ex);</span><br><span class="line">            list.add(0, &quot;数据验证失败：&quot;);</span><br><span class="line"></span><br><span class="line">            // 封装错误消息为字符串</span><br><span class="line">            StringBuilder sb = new StringBuilder();</span><br><span class="line">            for (int i = 0; i &lt; list.size(); i++) &#123;</span><br><span class="line">                String exMsg = list.get(i);</span><br><span class="line">                if (i != 0 )&#123;</span><br><span class="line">                    sb.append(String.format(&quot;%s. %s&quot;, i, exMsg)).append(list.size() &gt; 1 ? &quot;&lt;br/&gt;&quot; : &quot;&quot;);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    sb.append(exMsg).append(list.size() &gt; 1 ? &quot;&lt;br/&gt;&quot; : &quot;&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return sb.toString();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#添加注解  </span><br><span class="line">@Length(min = 6, max = 20, message = &quot;用户名长度必须介于 6 和 20 之间&quot;)</span><br><span class="line">private String username;</span><br><span class="line"></span><br><span class="line">#xml注入工具类 </span><br><span class="line">&lt;!-- 配置 Bean Validator 定义 --&gt;</span><br><span class="line">&lt;bean id=&quot;validator&quot; class=&quot;org.springframework.validation.beanvalidation.LocalValidatorFactoryBean&quot;/&gt;</span><br><span class="line">&lt;bean id=&quot;beanValidator&quot; class=&quot;com.funtl.my.shop.commons.validator.BeanValidator&quot;&gt;</span><br><span class="line">    &lt;property name=&quot;validator&quot; ref=&quot;validator&quot; /&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

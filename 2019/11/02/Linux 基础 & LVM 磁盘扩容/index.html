@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Linux 基础 &amp; LVM 磁盘扩容 - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载、安装Ubuntu"><span class="toc-text">下载、安装Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux目录结构"><span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改数据源"><span class="toc-text">修改数据源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LVM的基本概念"><span class="toc-text">LVM的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#物理卷-Physical-volume（PV）"><span class="toc-text">物理卷 Physical volume（PV）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卷组-Volume-group-VG"><span class="toc-text">卷组 Volume group (VG)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑卷-Logical-volume-LV"><span class="toc-text">逻辑卷 Logical volume (LV)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#物理区域-Physical-extent-PE"><span class="toc-text">物理区域 Physical extent (PE)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始LVM扩容"><span class="toc-text">开始LVM扩容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看所有连接到电脑上的储存设备"><span class="toc-text">查看所有连接到电脑上的储存设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建-sdb-分区"><span class="toc-text">创建 sdb 分区</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Linux 基础 &amp; LVM 磁盘扩容
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-02 21:03:02</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#LVM" title="LVM">LVM</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="下载、安装Ubuntu"><a href="#下载、安装Ubuntu" class="headerlink" title="下载、安装Ubuntu"></a>下载、安装Ubuntu</h3><blockquote>
+<p>官网下载：<a href="https://ubuntu.com/download/server" target="_blank" rel="noopener">https://ubuntu.com/download/server</a>  </p>
+</blockquote>
+<h3 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h3><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>bin</strong></td>
+<td>存放二进制可执行文件(ls,cat,mkdir等)</td>
+</tr>
+<tr>
+<td>boot</td>
+<td>存放用于系统引导时使用的各种文件</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>用于存放设备文件</td>
+</tr>
+<tr>
+<td><strong>etc</strong></td>
+<td>存放系统配置文件</td>
+</tr>
+<tr>
+<td><strong>home</strong></td>
+<td>存放所有用户文件的根目录</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>存放跟文件系统中的程序运行所需要的共享库及内核模块</td>
+</tr>
+<tr>
+<td>mnt</td>
+<td>系统管理员安装临时文件系统的安装点</td>
+</tr>
+<tr>
+<td>opt</td>
+<td>额外安装的可选应用程序包所放置的位置</td>
+</tr>
+<tr>
+<td>proc</td>
+<td>虚拟文件系统，存放当前内存的映射</td>
+</tr>
+<tr>
+<td>root</td>
+<td>超级用户目录</td>
+</tr>
+<tr>
+<td>sbin</td>
+<td>存放二进制可执行文件，只有root才能访问</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>用于存放各种临时文件</td>
+</tr>
+<tr>
+<td><strong>usr</strong></td>
+<td>用于存放系统应用程序，比较重要的目录/usr/local 本地管理员软件安装目录</td>
+</tr>
+<tr>
+<td><strong>var</strong></td>
+<td>用于存放运行时需要改变数据的文件</td>
+</tr>
+</tbody></table>
+<h3 id="修改数据源"><a href="#修改数据源" class="headerlink" title="修改数据源"></a>修改数据源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查看系统版本</span><br><span class="line">lsb_release -a</span><br><span class="line"># 编辑数据源  </span><br><span class="line">vi /etc/apt/sources.list</span><br><span class="line">## 删除全部内容，添加  </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line"># 更新数据源</span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<h3 id="LVM的基本概念"><a href="#LVM的基本概念" class="headerlink" title="LVM的基本概念"></a>LVM的基本概念</h3><h4 id="物理卷-Physical-volume（PV）"><a href="#物理卷-Physical-volume（PV）" class="headerlink" title="物理卷 Physical volume（PV）"></a>物理卷 Physical volume（PV）</h4><blockquote>
+<p>可以在上面建立卷组的媒介，可以是<strong>硬盘分区</strong>，也可以是<strong>硬盘本身</strong>或者<strong>回环文件</strong>（loopback file）。物理卷包括一个特殊的 header，其余部分被切割为一块块物理区域（physical extents）  </p>
+</blockquote>
+<h4 id="卷组-Volume-group-VG"><a href="#卷组-Volume-group-VG" class="headerlink" title="卷组 Volume group (VG)"></a>卷组 Volume group (VG)</h4><blockquote>
+<p>将一组物理卷收集为一个<strong>管理单元</strong>  </p>
+</blockquote>
+<h4 id="逻辑卷-Logical-volume-LV"><a href="#逻辑卷-Logical-volume-LV" class="headerlink" title="逻辑卷 Logical volume (LV)"></a>逻辑卷 Logical volume (LV)</h4><blockquote>
+<p><strong>虚拟分区</strong>，由物理区域（physical extents）组成  </p>
+</blockquote>
+<h4 id="物理区域-Physical-extent-PE"><a href="#物理区域-Physical-extent-PE" class="headerlink" title="物理区域 Physical extent (PE)"></a>物理区域 Physical extent (PE)</h4><blockquote>
+<p>硬盘可供指派给逻辑卷的最小单位（通常为 4MB）  </p>
+</blockquote>
+<h3 id="开始LVM扩容"><a href="#开始LVM扩容" class="headerlink" title="开始LVM扩容"></a>开始LVM扩容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 查看 fdisk</span><br><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://note.youdao.com/yws/api/personal/file/158366A2ECF241F38EF67284942E1B67?method=download&shareKey=03efad7f6657df0955557c96be683842" alt="image"></p>
+<blockquote>
+<p>因为这台机器默认开启了 LVM，所以目前有一个 <strong>extended</strong> 分区和一个 <strong>LVM</strong> 分区，并且他们是完全重叠的。这是因为，LVM 分区作为一个虚拟的分区，完全占用了这个 extended 分区，原理图见下：<br><img src="https://note.youdao.com/yws/api/personal/file/4641A2265CDD4FCAA12DD369E1F9B6E3?method=download&shareKey=bb9a1f1d593a7653ab75f0d108755840" alt="image"><br>因此，现在需要做的就是将 extended partition (sda2) 扩展到最大，然后创建一个新的 LVM logical partition (sda6)，用它来填满 sda2  </p>
+</blockquote>
+<h4 id="查看所有连接到电脑上的储存设备"><a href="#查看所有连接到电脑上的储存设备" class="headerlink" title="查看所有连接到电脑上的储存设备"></a>查看所有连接到电脑上的储存设备</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l |grep &apos;/dev&apos;</span><br></pre></td></tr></table></figure>
+
+<p><strong>1 块磁盘效果图</strong><br><img src="https://note.youdao.com/yws/api/personal/file/E01530FE7C014C08B037D8757099FA4B?method=download&shareKey=109c7985d3cfdeca6dec59c97c58f3fb" alt="image"></p>
+<p><strong>2 块磁盘效果图</strong><br><img src="https://note.youdao.com/yws/api/personal/file/474A8AA4FF1442CF948E14453A3BD1CB?method=download&shareKey=2f3b44b4c0ce214376481b1ed57cba36" alt="image"></p>
+<h4 id="创建-sdb-分区"><a href="#创建-sdb-分区" class="headerlink" title="创建 sdb 分区"></a>创建 sdb 分区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/sdb</span><br><span class="line">n	# 新建分区</span><br><span class="line">l	# 选择逻辑分区，如果没有，则首先创建扩展分区（p），然后再添加逻辑分区（硬盘：最多四个分区 P-P-P-P 或 P-P-P-E）</span><br><span class="line"># 格式化磁盘  </span><br><span class="line">mkfs -t ext4 /dev/sdb1</span><br><span class="line"># 创建 PV  </span><br><span class="line">pvcreate /dev/sdb1</span><br><span class="line"># 查看卷组</span><br><span class="line">pvscan</span><br><span class="line"># 扩容 VG</span><br><span class="line">vgdisplay</span><br><span class="line">vgextend ubuntu-vg /dev/sdb1</span><br><span class="line"># 增加指定大小</span><br><span class="line">lvextend -L +30G /dev/ubuntu-vg/root</span><br><span class="line"># 按百分比扩容</span><br><span class="line">lvextend -l +100%FREE /dev/ubuntu-vg/root</span><br><span class="line"># 刷新分区</span><br><span class="line">resize2fs /dev/ubuntu-vg/root</span><br><span class="line"># 删除 unknown device</span><br><span class="line">pvscan</span><br><span class="line">vgreduce --removemissing ubuntu-vg</span><br></pre></td></tr></table></figure>
+
+
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

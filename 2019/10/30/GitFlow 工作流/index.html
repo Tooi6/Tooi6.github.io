@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        GitFlow 工作流 - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tortoise-Git"><span class="toc-text">Tortoise Git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git几种主流的工作流"><span class="toc-text">Git几种主流的工作流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#集中式工作流"><span class="toc-text">集中式工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#功能分支工作流"><span class="toc-text">功能分支工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GitFlow-工作流"><span class="toc-text">GitFlow 工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Forking-工作流"><span class="toc-text">Forking 工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#流程解析"><span class="toc-text">流程解析</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        GitFlow 工作流
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-10-30 22:40:51</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#GitFlow 工作流" title="GitFlow 工作流">GitFlow 工作流</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Tortoise Git" title="Tortoise Git">Tortoise Git</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="Tortoise-Git"><a href="#Tortoise-Git" class="headerlink" title="Tortoise Git"></a>Tortoise Git</h3><blockquote>
+<p>官网下载：<a href="https://tortoisegit.org/download/" target="_blank" rel="noopener">https://tortoisegit.org/download/</a>  </p>
+</blockquote>
+<h3 id="Git几种主流的工作流"><a href="#Git几种主流的工作流" class="headerlink" title="Git几种主流的工作流"></a>Git几种主流的工作流</h3><h4 id="集中式工作流"><a href="#集中式工作流" class="headerlink" title="集中式工作流"></a>集中式工作流</h4><blockquote>
+<p>所有的<strong>功能开发与修改都在 master 分支上进行</strong>的。开发者开始先克隆中央仓库。在自己的项目拷贝中像SVN一样的编辑文件和提交修改；但修改是存在本地的，和中央仓库是完全隔离的。开发者可以把和上游的同步延后到一个方便时间点。<br><img src="https://note.youdao.com/yws/api/personal/file/64CEFF1425774282A82F1E00D0FA8649?method=download&shareKey=5833170a020b4bb4651c41f983e47b37" alt="image">  </p>
+</blockquote>
+<h4 id="功能分支工作流"><a href="#功能分支工作流" class="headerlink" title="功能分支工作流"></a>功能分支工作流</h4><blockquote>
+<p>功能分支工作流以集中式工作流为基础，不同的是<strong>为各个新功能分配一个专门的分支来开发</strong>。功能分支工作流背后的核心思路是所有的功能开发应该在一个专门的分支，而不是在 master 分支上。<br><img src="https://note.youdao.com/yws/api/personal/file/B1701B5FAB8140FEA44B3AD7372F114E?method=download&shareKey=c879c215afd63fdabfb4884b11cb9124" alt="image">  </p>
+</blockquote>
+<h4 id="GitFlow-工作流"><a href="#GitFlow-工作流" class="headerlink" title="GitFlow 工作流"></a>GitFlow 工作流</h4><blockquote>
+<p>GitFlow 工作流通过为<strong>功能开发、发布准备</strong>和<strong>维护分配</strong>独立的分支，让发布迭代过程更流畅。严格的分支模型也为大型项目提供了一些非常必要的结构。<br><img src="https://note.youdao.com/yws/api/personal/file/FB06F01E87C044949FABB9CDDE711F87?method=download&shareKey=a8fe1902c3daa4a33ea992469f5fa276" alt="image"></p>
+</blockquote>
+<h4 id="Forking-工作流"><a href="#Forking-工作流" class="headerlink" title="Forking 工作流"></a>Forking 工作流</h4><blockquote>
+<p>Forking 工作流是分布式工作流，充分利用了 Git 在分支和克隆上的优势。可以安全可靠地管理大团队的开发者（developer），并能接受不信任贡献者（contributor）的提交。<br><img src="https://note.youdao.com/yws/api/personal/file/C89D9EEB7E08493380A8964FE4424739?method=download&shareKey=432315df4ddd4ba6ae44d3ee9af5724a" alt="image"></p>
+</blockquote>
+<h4 id="流程解析"><a href="#流程解析" class="headerlink" title="流程解析"></a>流程解析</h4><ul>
+<li><strong>master分支：</strong> 存放所有<strong>正式发布的版本</strong>，可以作为项目<strong>历史版本记录分支</strong>，不直接提交代码。仅用于保持一个对应线上运行代码的 code base。</li>
+<li><strong>develop分支：</strong> 为<strong>主开发分支</strong>，一般不直接提交代码  </li>
+<li><strong>feature分支：</strong> 为<strong>新功能分支</strong>，feature分支都是基于develop创建的，开发完成后会合并到develop分支上。</li>
+<li><strong>release分支：</strong> 为<strong>发布分支</strong>，基于最新develop分支创建。</li>
+<li><strong>hotfix分支：</strong> <strong>基于master分支创建</strong>，对线上版本的<strong>bug进行修复</strong>，完成后直接合并到master分支和develop分支，如果当前还有新功能release分支，也同步到release分支上。</li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
