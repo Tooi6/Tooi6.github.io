@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Spring Boot &amp; Spring Boot Netflix - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo"><span class="toc-text">Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#统一依赖管理（demo-dependencies）"><span class="toc-text">统一依赖管理（demo-dependencies）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#demo-eureka（服务注册与发现）"><span class="toc-text">demo-eureka（服务注册与发现）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务提供者（demo-service-admin）"><span class="toc-text">服务提供者（demo-service-admin）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务消费者Ribbon（demo-web-admin-ribbon）"><span class="toc-text">服务消费者Ribbon（demo-web-admin-ribbon）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务消费者（Feign）"><span class="toc-text">服务消费者（Feign）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#熔断器（Hystrix）"><span class="toc-text">熔断器（Hystrix）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hystrix-仪表盘-（Dashboard）"><span class="toc-text">Hystrix 仪表盘 （Dashboard）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#路由网关（demo-zuul）"><span class="toc-text">路由网关（demo-zuul）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分布式配置中心"><span class="toc-text">分布式配置中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#服务链路追踪-（zipkin）"><span class="toc-text">服务链路追踪 （zipkin）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Boot-Admin"><span class="toc-text">Spring Boot Admin</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Spring Boot &amp; Spring Boot Netflix
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-10 10:54:06</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#微服务" title="微服务">微服务</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Spring Boot" title="Spring Boot">Spring Boot</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Spring Netflix" title="Spring Netflix">Spring Netflix</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><blockquote>
+<p>具体项目放在GitHub仓库：<a href="https://github.com/Tooi6/demo-spring-cloud" target="_blank" rel="noopener">https://github.com/Tooi6/demo-spring-cloud</a></p>
+</blockquote>
+<h4 id="统一依赖管理（demo-dependencies）"><a href="#统一依赖管理（demo-dependencies）" class="headerlink" title="统一依赖管理（demo-dependencies）"></a>统一依赖管理（demo-dependencies）</h4><blockquote>
+<p>所有项目都会依赖这个项目，配置一些项目需要用到的插件、下载依赖时的第三方库  </p>
+</blockquote>
+<h4 id="demo-eureka（服务注册与发现）"><a href="#demo-eureka（服务注册与发现）" class="headerlink" title="demo-eureka（服务注册与发现）"></a>demo-eureka（服务注册与发现）</h4><blockquote>
+<p> Spring Cloud Netflix 的 Eureka，Eureka 是一个服务注册和发现模块  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!-- Spring Boot Begin --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- Spring Boot End --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Spring Cloud Begin --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- Spring Cloud End --&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line"># application.yml </span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: demo-tooi-eureka</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8761</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  instance:</span><br><span class="line">    hostname: localhost</span><br><span class="line">  client:</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务提供者（demo-service-admin）"><a href="#服务提供者（demo-service-admin）" class="headerlink" title="服务提供者（demo-service-admin）"></a>服务提供者（demo-service-admin）</h4><blockquote>
+<p>Eureka Client 注册到Eureka Service，提供服务  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!-- Spring Boot Begin --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- Spring Boot End --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Spring Cloud Begin --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- Spring Cloud End --&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line"># application.yml</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: demo-service-admin</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8763</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务消费者Ribbon（demo-web-admin-ribbon）"><a href="#服务消费者Ribbon（demo-web-admin-ribbon）" class="headerlink" title="服务消费者Ribbon（demo-web-admin-ribbon）"></a>服务消费者Ribbon（demo-web-admin-ribbon）</h4><blockquote>
+<p>在微服务架构中，业务都会被拆分成一个独立的服务，服务与服务的通讯是基于 http restful 的。Spring cloud 有两种服务调用方式，一种是 ribbon + restTemplate，另一种是 feign</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line"># 调用服务</span><br><span class="line">@Service</span><br><span class="line">public class AdminService &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    public String sayHi(String message) &#123;</span><br><span class="line">        return restTemplate.getForObject(&quot;http://DEMO-SERVICE-ADMIN/hi?message=&quot; + message, String.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务消费者（Feign）"><a href="#服务消费者（Feign）" class="headerlink" title="服务消费者（Feign）"></a>服务消费者（Feign）</h4><blockquote>
+<p>Feign 默认集成了 Ribbon，并和 Eureka 结合，默认实现了负载均衡的效果  </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 调用服务  </span><br><span class="line">@FeignClient(value = &quot;DEMO-SERVICE-ADMIN&quot;)</span><br><span class="line">public interface AdminService &#123;</span><br><span class="line">    @GetMapping(&quot;hi&quot;)</span><br><span class="line">    String sayHi(@RequestParam(&quot;message&quot;) String message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="熔断器（Hystrix）"><a href="#熔断器（Hystrix）" class="headerlink" title="熔断器（Hystrix）"></a>熔断器（Hystrix）</h4><blockquote>
+<p>当对特定的服务的调用的不可用达到一个阀值（Hystrix 是 5 秒 20 次） 熔断器将会被打开。熔断器打开后，为了避免连锁故障，通过 <strong>fallback</strong> 方法可以直接返回一个固定值。  </p>
+</blockquote>
+<ul>
+<li><strong>Ribbon中使用</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 添加依赖  </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 在 Application 中增加 @EnableHystrix 注解  </span><br><span class="line"></span><br><span class="line"># 增加 fallbackMethod 熔断方法</span><br><span class="line">@HystrixCommand(fallbackMethod = &quot;hiError&quot;)</span><br><span class="line">public String sayHi(String message) &#123;</span><br><span class="line">    return restTemplate.getForObject(&quot;http://DEMO-SERVICE-ADMIN/hi?message=&quot; + message, String.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public String hiError(String message) &#123;</span><br><span class="line">    return String.format(&quot;message：%s , request error.&quot;,message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Feign中使用</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 添加依赖</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 配置 application.yml</span><br><span class="line">feign:</span><br><span class="line">  hystrix:</span><br><span class="line">    enabled: true</span><br><span class="line"></span><br><span class="line"># 在 service 中指定 fallback 类</span><br><span class="line">@FeignClient(value = &quot;DEMO-SERVICE-ADMIN&quot;,fallback = AdminServiceHystrix.class)</span><br><span class="line">public interface AdminService &#123;</span><br><span class="line">    @GetMapping(&quot;hi&quot;)</span><br><span class="line">    String sayHi(@RequestParam(&quot;message&quot;) String message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 创建并实现对应的Feign接口  </span><br><span class="line">@Component</span><br><span class="line">public class AdminServiceHystrix implements AdminService &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String sayHi(String message) &#123;</span><br><span class="line">        return String.format(&quot;message：%s，request error&quot;,message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Hystrix-仪表盘-（Dashboard）"><a href="#Hystrix-仪表盘-（Dashboard）" class="headerlink" title="Hystrix 仪表盘 （Dashboard）"></a>Hystrix 仪表盘 （Dashboard）</h4><blockquote>
+</blockquote>
+<ul>
+<li><strong>Ribbon 和 Feign 改造方式相同</strong> </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 添加依赖  </span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix-dashboard&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 在 Application 中添加 @EnableHystrixDashboard 注解</span><br><span class="line"></span><br><span class="line"># 添加类  </span><br><span class="line">@Configuration</span><br><span class="line">public class HystrixDashboardConfiguration &#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public ServletRegistrationBean getServlet() &#123;</span><br><span class="line">        HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();</span><br><span class="line">        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);</span><br><span class="line">        registrationBean.setLoadOnStartup(1);</span><br><span class="line">        registrationBean.addUrlMappings(&quot;/hystrix.stream&quot;);</span><br><span class="line">        registrationBean.setName(&quot;HystrixMetricsStreamServlet&quot;);</span><br><span class="line">        return registrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="路由网关（demo-zuul）"><a href="#路由网关（demo-zuul）" class="headerlink" title="路由网关（demo-zuul）"></a>路由网关（demo-zuul）</h4><blockquote>
+<p>Zuul 的主要功能是<strong>路由转发和过滤器</strong>。路由功能是微服务的一部分。Zuul 默认和 Ribbon 结合实现了<strong>负载均衡</strong>的功能</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 在application 开启 @EnableZuulProxy 注解  </span><br><span class="line"></span><br><span class="line"># application.yml  </span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: demo-zuul</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8769</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line"></span><br><span class="line">zuul:</span><br><span class="line">  routes:</span><br><span class="line">    api-a:</span><br><span class="line">      path: /api/a/**</span><br><span class="line">      serviceId: demo-web-admin-ribbon</span><br><span class="line">    api-b:</span><br><span class="line">      path: /api/b/**</span><br><span class="line">      serviceId: demo-web-admin-feign</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>配置网关路由失败时的回调</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"># 添加类</span><br><span class="line">@Component</span><br><span class="line">public class WebAdminFeignFallbackProvider implements FallbackProvider &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getRoute() &#123;</span><br><span class="line">        // // ServiceId，如果需要所有调用都支持回退，则 return &quot;*&quot; 或 return null</span><br><span class="line">        return &quot;demo-web-admin-feign&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 如果请求失败，则返回指定信息给调用者</span><br><span class="line">     *</span><br><span class="line">     * @param route</span><br><span class="line">     * @param cause</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    public ClientHttpResponse fallbackResponse(String route, Throwable cause) &#123;</span><br><span class="line">        return new ClientHttpResponse() &#123;</span><br><span class="line">            /**</span><br><span class="line">             * 网关向 api 服务请求失败了，但是消费者客户端向网关发起的请求是成功的，</span><br><span class="line">             * 不应该把 api 的 404,500 等问题抛给客户端</span><br><span class="line">             * 网关和 api 服务集群对于客户端来说是黑盒</span><br><span class="line">             * @return</span><br><span class="line">             * @throws IOException</span><br><span class="line">             */</span><br><span class="line">            @Override</span><br><span class="line">            public HttpStatus getStatusCode() throws IOException &#123;</span><br><span class="line">                return HttpStatus.OK;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public int getRawStatusCode() throws IOException &#123;</span><br><span class="line">                return HttpStatus.OK.value();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public String getStatusText() throws IOException &#123;</span><br><span class="line">                return HttpStatus.OK.getReasonPhrase();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public void close() &#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public InputStream getBody() throws IOException &#123;</span><br><span class="line">                ObjectMapper objectMapper = new ObjectMapper();</span><br><span class="line">                Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">                map.put(&quot;status&quot;, 200);</span><br><span class="line">                map.put(&quot;message&quot;, &quot;无法连接，请检查您的网络&quot;);</span><br><span class="line">                return new ByteArrayInputStream(objectMapper.writeValueAsString(map).getBytes(&quot;UTF-8&quot;));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            @Override</span><br><span class="line">            public HttpHeaders getHeaders() &#123;</span><br><span class="line">                HttpHeaders headers = new HttpHeaders();</span><br><span class="line">                // 和 getBody 中的内容编码一致</span><br><span class="line">                headers.setContentType(MediaType.APPLICATION_JSON_UTF8);</span><br><span class="line">                return headers;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>使用路由网关的服务过滤功能</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 添加过滤器类  </span><br><span class="line">public class Filter extends ZuulFilter&#123;</span><br><span class="line">    // 详细看源代码...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="分布式配置中心"><a href="#分布式配置中心" class="headerlink" title="分布式配置中心"></a>分布式配置中心</h4><blockquote>
+<p>在分布式系统中，由于服务数量巨多，为了方便服务配置<strong>文件统一管理，实时更新</strong>，所以需要分布式配置中心组件。<br>在 Spring Cloud Config 组件中，分两个角色，一是 Config Server，二是 Config Client。 </p>
+</blockquote>
+<blockquote>
+<p>新建git仓库：<a href="https://github.com/Tooi6/demo-remote-config.git" target="_blank" rel="noopener">https://github.com/Tooi6/demo-remote-config.git</a></p>
+</blockquote>
+<ul>
+<li><strong>服务端（demo-config）</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-config-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># application.yml</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: demo-config</span><br><span class="line">  cloud:</span><br><span class="line">    config:</span><br><span class="line">      label: master</span><br><span class="line">      server:</span><br><span class="line">        git:</span><br><span class="line">          uri: https://github.com/Tooi6/demo-remote-config.git</span><br><span class="line">          search-paths: respo</span><br><span class="line">          username: youemail@emai.com</span><br><span class="line">          password: youpassword</span><br><span class="line">server:</span><br><span class="line">  port: 8888</span><br><span class="line">  </span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line"># 在 application 开启配置 @EnableConfigServer</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>客户端（改造Feign项目）</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml 添加依赖</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-config&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># application.yml</span><br><span class="line">spring:</span><br><span class="line">  cloud:</span><br><span class="line">    config:</span><br><span class="line">      uri: http://localhost:8888</span><br><span class="line">      name: web-admin-feign</span><br><span class="line">      label: master</span><br><span class="line">      profile: dev</span><br></pre></td></tr></table></figure>
+
+<h4 id="服务链路追踪-（zipkin）"><a href="#服务链路追踪-（zipkin）" class="headerlink" title="服务链路追踪 （zipkin）"></a>服务链路追踪 （zipkin）</h4><blockquote>
+<p>ZipKin 是一个开放源代码的<strong>分布式跟踪系统</strong>，由 Twitter 公司开源，它致力于收集服务的定时数据，<strong>以解决微服务架构中的延迟问题，包括数据的收集、存储、查找和展现。</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml 添加依赖</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.zipkin.java&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;zipkin&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.zipkin.java&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;zipkin-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;io.zipkin.java&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;zipkin-autoconfigure-ui&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 在 application 启动注解 @EnableZipkinServer</span><br><span class="line"></span><br><span class="line"># application.yml</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: demo-zipkin</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 9411</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line"></span><br><span class="line">management:</span><br><span class="line">  metrics:</span><br><span class="line">    web:</span><br><span class="line">      server:</span><br><span class="line">        auto-time-requests: false</span><br><span class="line"></span><br><span class="line"># 给所有其他需要追踪的服务添加依赖</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-zipkin&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Spring-Boot-Admin"><a href="#Spring-Boot-Admin" class="headerlink" title="Spring Boot Admin"></a>Spring Boot Admin</h4><blockquote>
+<p>Spring Boot Admin是一个开源社区项目，用于<strong>管理和监控</strong>SpringBoot应用程序。 </p>
+</blockquote>
+<ul>
+<li><strong>Spring Boot Admin 服务端（demo-admin）</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.jolokia&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jolokia-core&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-starter-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># 在 application 类中添加 @EnableAdminServer 注解  </span><br><span class="line"></span><br><span class="line"># application.yml</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: hello-spring-cloud-admin</span><br><span class="line">  zipkin:</span><br><span class="line">    base-url: http://localhost:9411</span><br><span class="line"></span><br><span class="line">server:</span><br><span class="line">  port: 8084</span><br><span class="line"></span><br><span class="line">management:</span><br><span class="line">  endpoint:</span><br><span class="line">    health:</span><br><span class="line">      show-details: always</span><br><span class="line">  endpoints:</span><br><span class="line">    web:</span><br><span class="line">      exposure:</span><br><span class="line">        include: health,info</span><br><span class="line"></span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>客户端（改造其他项目）</strong> </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml 添加依赖</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.jolokia&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jolokia-core&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-starter-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"># application.yml 添加配置  </span><br><span class="line">spring:</span><br><span class="line">  boot:</span><br><span class="line">    admin:</span><br><span class="line">      client:</span><br><span class="line">        url: http://localhost:8084</span><br></pre></td></tr></table></figure>
+
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

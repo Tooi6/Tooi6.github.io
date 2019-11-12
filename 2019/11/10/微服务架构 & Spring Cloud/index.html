@@ -11,7 +11,7 @@
 
     <title>
         
-        GitLab 的使用与搭建 - Tooi的博客 | Tooi-Blog
+        微服务架构 &amp; Spring Cloud - Tooi的博客 | Tooi-Blog
         
     </title>
 
@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始部署"><span class="toc-text">开始部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#部署环境"><span class="toc-text">部署环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于Docker部署"><span class="toc-text">基于Docker部署</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是微服务？"><span class="toc-text">什么是微服务？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#微服务架构的优势"><span class="toc-text">微服务架构的优势</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是SpringCloud？"><span class="toc-text">什么是SpringCloud？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud的核心组件"><span class="toc-text">Spring Cloud的核心组件</span></a></li></ol>
 </div>
     
 </div>
@@ -120,18 +120,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        GitLab 的使用与搭建
+        微服务架构 &amp; Spring Cloud
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-11-06 18:04:15</span></span>
+        <span class="attr">发布于：<span>2019-11-10 10:54:06</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+        <a class="tag" href="/tags/#Spring Cloud" title="Spring Cloud">Spring Cloud</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#GitLab" title="GitLab">GitLab</a>
+        <a class="tag" href="/tags/#微服务架构" title="微服务架构">微服务架构</a>
         <span>/</span>
         
         
@@ -141,30 +141,35 @@
 </span>
     </div>
     <div class="post-content ">
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><blockquote>
-<p>GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务。简单的说就是一个私人的GitHub。  </p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="什么是微服务？"><a href="#什么是微服务？" class="headerlink" title="什么是微服务？"></a>什么是微服务？</h4><blockquote>
+<p>微服务的概念源于2014年3月Martin Fowler所写的一篇文章“Microservices”。<br><strong>微服务架构：</strong> 是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务间采用<strong>轻量级的通信机制</strong>互相沟通（通常是基于HTTP的RESTful API）。<br><strong>微服务：</strong> 是一种架构风格，一个大型复杂软件应用由一个或多个微服务组成。系统中的各个微服务可被独立部署，各个微服务之间是<strong>松耦合</strong>的。</p>
 </blockquote>
-<p>官方文档：<a href="https://docs.gitlab.com/ee/README.html" target="_blank" rel="noopener">https://docs.gitlab.com/ee/README.html</a></p>
-<h3 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h3><h4 id="部署环境"><a href="#部署环境" class="headerlink" title="部署环境"></a>部署环境</h4><table>
-<thead>
-<tr>
-<th>操作系统</th>
-<th>Ubuntu Server 16.04 LTS</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cpu</td>
-<td>2核</td>
-</tr>
-<tr>
-<td>内存</td>
-<td>2G</td>
-</tr>
-</tbody></table>
-<h4 id="基于Docker部署"><a href="#基于Docker部署" class="headerlink" title="基于Docker部署"></a>基于Docker部署</h4><blockquote>
-<p>Docker镜像：<a href="https://hub.docker.com/r/twang2218/gitlab-ce-zh" target="_blank" rel="noopener">https://hub.docker.com/r/twang2218/gitlab-ce-zh</a></p>
+<h4 id="微服务架构的优势"><a href="#微服务架构的优势" class="headerlink" title="微服务架构的优势"></a>微服务架构的优势</h4><ul>
+<li><strong>复杂度可控：</strong>  <blockquote>
+<p>每一个微服务专注于<strong>单一功能</strong>，并通过定义良好的接口清晰表述服务边界。由于体积小、复杂度低，每个微服务可由一个小规模开发团队完全掌控，易于保持高可维护性和开发效率。  </p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 拉取镜像  </span><br><span class="line">docker pull twang2218/gitlab-ce-zh</span><br><span class="line"></span><br><span class="line">### docker-compose.yml</span><br><span class="line">version: &apos;3&apos;</span><br><span class="line">services:</span><br><span class="line">    web:</span><br><span class="line">      image: &apos;twang2218/gitlab-ce-zh&apos;</span><br><span class="line">      restart: always</span><br><span class="line">      hostname: &apos;192.168.213.128&apos;</span><br><span class="line">      environment:</span><br><span class="line">        TZ: &apos;Asia/Shanghai&apos;</span><br><span class="line">        GITLAB_OMNIBUS_CONFIG: |</span><br><span class="line">          external_url &apos;http://192.168.213.128:8080&apos;</span><br><span class="line">          gitlab_rails[&apos;gitlab_shell_ssh_port&apos;] = 2222</span><br><span class="line">          unicorn[&apos;port&apos;] = 8888</span><br><span class="line">          nginx[&apos;listen_port&apos;] = 8080</span><br><span class="line">      ports:</span><br><span class="line">        - &apos;8080:8080&apos;</span><br><span class="line">        - &apos;8443:443&apos;</span><br><span class="line">        - &apos;2222:22&apos;</span><br><span class="line">      volumes:</span><br><span class="line">        - /usr/local/docker/gitlab/config:/etc/gitlab</span><br><span class="line">        - /usr/local/docker/gitlab/data:/var/opt/gitlab</span><br><span class="line">        - /usr/local/docker/gitlab/logs:/var/log/gitlab</span><br><span class="line">###</span><br><span class="line"></span><br><span class="line"># 启动  </span><br><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>独立部署：</strong>  <blockquote>
+<p>由于微服务具备<strong>独立的运行进程</strong>，所以每个微服务也可以独立部署。  </p>
+</blockquote>
+</li>
+<li><strong>技术选型灵活：</strong>  <blockquote>
+<p>微服务架构下，技术选型是去中心化的。每个团队可以根据自身服务的需求和行业发展的现状，自由选择最适合的技术栈。</p>
+</blockquote>
+</li>
+<li><strong>容错：</strong>  <blockquote>
+<p>在微服务架构下，故障会被隔离在单个服务中。若设计良好，其他服务可通过<strong>重试、平稳退化</strong>等机制实现应用层面的容错。</p>
+</blockquote>
+</li>
+<li><strong>扩展</strong>  <blockquote>
+<p>微服务架构在扩展功能方面具有灵活性，因为每个服务可以<strong>根据实际需求独立进行扩展</strong></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="什么是SpringCloud？"><a href="#什么是SpringCloud？" class="headerlink" title="什么是SpringCloud？"></a>什么是SpringCloud？</h4><blockquote>
+<p>SpringCloud是<strong>微服务架构的集大成者</strong>，将一系列优秀的组件进行了整合。SpringCloud的组件相当繁杂，拥有诸多子项目。重点关注<strong>Netflix</strong></p>
+</blockquote>
+<h3 id="Spring-Cloud的核心组件"><a href="#Spring-Cloud的核心组件" class="headerlink" title="Spring Cloud的核心组件"></a>Spring Cloud的核心组件</h3><p><img src="https://note.youdao.com/yws/api/personal/file/D47A17F9F0054D368770574184DB81FB?method=download&shareKey=56a5caadbcea630f69ae65cc14c960cd" alt="image">  </p>
 
         
             <div class="donate-container">
