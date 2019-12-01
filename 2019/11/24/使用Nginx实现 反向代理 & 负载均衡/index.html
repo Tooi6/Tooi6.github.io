@@ -89,7 +89,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是-Nginx？"><span class="toc-text">什么是 Nginx？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-的应用场景"><span class="toc-text">Nginx 的应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Http-代理（正向代理、反向代理）"><span class="toc-text">Http 代理（正向代理、反向代理）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#负载均衡"><span class="toc-text">负载均衡</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEMO"><span class="toc-text">DEMO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装、运行-Nginx"><span class="toc-text">安装、运行 Nginx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代理-tomcat-服务器"><span class="toc-text">代理 tomcat 服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何配置负载均衡？"><span class="toc-text">如何配置负载均衡？</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -124,7 +124,19 @@
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2019-11-24 10:45:31</span></span>
+        <span class="attr">发布于：<span>2019-11-24 09:09:15</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Nginx" title="Nginx">Nginx</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#负载均衡" title="负载均衡">负载均衡</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#反向代理" title="反向代理">反向代理</a>
+        <span>/</span>
+        
         
         </span>
         <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
@@ -132,7 +144,35 @@
 </span>
     </div>
     <div class="post-content ">
-        
+        <h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a>什么是 Nginx？</h3><blockquote>
+<p>Nginx 是一个很强大的高性能Web和反向代理服务,在连接高并发的情况下，Nginx是Apache服务不错的替代品。能够支持高达 50,000 个并发连接数的响应。</p>
+</blockquote>
+<h3 id="Nginx-的应用场景"><a href="#Nginx-的应用场景" class="headerlink" title="Nginx 的应用场景"></a>Nginx 的应用场景</h3><h4 id="Http-代理（正向代理、反向代理）"><a href="#Http-代理（正向代理、反向代理）" class="headerlink" title="Http 代理（正向代理、反向代理）"></a>Http 代理（正向代理、反向代理）</h4><ul>
+<li><strong>什么是代理服务器？</strong><blockquote>
+<p>代理服务器，客户机在发送请求时，不会直接发送给目的主机，而是先发送给代理服务器，代理服务接受客户机请求之后，再向主机发出，并接收目的主机返回的数据，存放在代理服务器的硬盘中，再发送给客户机。  </p>
+</blockquote>
+</li>
+<li><strong>正向代理和反向代理？</strong>  <blockquote>
+<p><strong>正向代理</strong>，架设在客户机与目标主机之间，只用于代理内部网络对 Internet 的连接请求，客户机必须指定代理服务器,并将本来要直接发送到 Web 服务器上的 Http 请求发送到代理服务器中。  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p><strong>反向代理</strong>服务器架设在服务器端，通过缓冲经常被请求的页面来缓解服务器的工作量，将客户机请求转发给内部网络上的目标服务器；并将从服务器上得到的结果返回给 Internet 上请求连接的客户端，此时代理服务器与目标主机一起对外表现为一个服务器。    </p>
+</blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/13C7AE322B474D6C9F2C0EDBCF791A60?method=download&shareKey=ae96160af45f2e89cf8925ce3e4a3d5f" alt="image">  </p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><blockquote>
+<p>负载均衡，英文名称为 Load Balance，其意思就是<strong>分摊到多个操作单元上进行执行</strong>，例如 Web 服务器、FTP 服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务<br>Nginx提供的负载均衡策略有2种：<strong>内置策略和扩展策略</strong>。内置策略为轮询，加权轮询，Ip hash。</p>
+</blockquote>
+<h3 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h3><h4 id="安装、运行-Nginx"><a href="#安装、运行-Nginx" class="headerlink" title="安装、运行 Nginx"></a>安装、运行 Nginx</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 新建 docker-compose.yml 文件 </span><br><span class="line">version: &apos;3.1&apos;</span><br><span class="line">services:</span><br><span class="line">  nginx:</span><br><span class="line">    restart: always</span><br><span class="line">    image: nginx</span><br><span class="line">    container_name: nginx</span><br><span class="line">    ports:</span><br><span class="line">      - 80:8080</span><br><span class="line">      - 81:8081</span><br><span class="line">    volumes:</span><br><span class="line">      - ./conf/nginx.conf:/etc/nginx/nginx.conf</span><br><span class="line">      - ./wwwroot:/usr/local/docker/nginx/wwwroot</span><br><span class="line">### end file</span><br><span class="line"></span><br><span class="line"># 新建 ./wwwroot 目录 和 ./conf/nginx.conf 文件</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="代理-tomcat-服务器"><a href="#代理-tomcat-服务器" class="headerlink" title="代理 tomcat 服务器"></a>代理 tomcat 服务器</h4><blockquote>
+<p>启动两个 tomcat ，用 Nginx 反向代理 tomcat </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"># 使用docker-compose.yml启动 tomcat</span><br><span class="line">version: &apos;3&apos;</span><br><span class="line">services:</span><br><span class="line">  tomcat1:</span><br><span class="line">    image: tomcat</span><br><span class="line">    container_name: tomcat1</span><br><span class="line">    ports:</span><br><span class="line">      - 8080:8080</span><br><span class="line"></span><br><span class="line">  tomcat2:</span><br><span class="line">    image: tomcat</span><br><span class="line">    container_name: tomcat2</span><br><span class="line">    ports:</span><br><span class="line">      - 8081:8080</span><br><span class="line"># 启动</span><br><span class="line">docker-compose up -d</span><br><span class="line"></span><br><span class="line"># 修改 ./conf/nginx.conf 配置文件</span><br><span class="line">worker_processes  1;</span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    upstream tomcatServer1 &#123;</span><br><span class="line">        server 192.168.213.128:8080;</span><br><span class="line">    &#125;</span><br><span class="line">    upstream tomcatServer2 &#123;</span><br><span class="line">        server 192.168.213.128:8081;</span><br><span class="line">    &#125;</span><br><span class="line">    # 配置一个虚拟主机</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 8080;</span><br><span class="line">        server_name tomcat1;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://tomcatServer1;</span><br><span class="line">            index index.jsp index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 8081;</span><br><span class="line">        server_name tomcat2;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://tomcatServer2;</span><br><span class="line">            index index.jsp index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 启动 Nginx</span><br><span class="line">docker-compose up</span><br><span class="line"></span><br><span class="line"># 测试，访问 http://NginxIp:80</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何配置负载均衡？"><a href="#如何配置负载均衡？" class="headerlink" title="如何配置负载均衡？"></a>如何配置负载均衡？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># ./conf/nginx.conf 文件upstream下配置</span><br><span class="line"></span><br><span class="line"># 定义负载均衡设备的 Ip及设备状态 </span><br><span class="line">upstream myServer &#123;</span><br><span class="line">    server 127.0.0.1:9090 down;</span><br><span class="line">    server 127.0.0.1:8080 weight=2;</span><br><span class="line">    server 127.0.0.1:6060;</span><br><span class="line">    server 127.0.0.1:7070 backup;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># upstream：每个设备的状态:</span><br><span class="line"># down：表示当前的 server 暂时不参与负载</span><br><span class="line"># weight：默认为 1 weight 越大，负载的权重就越大。</span><br><span class="line"># max_fails：允许请求失败的次数默认为 1 当超过最大次数时，返回 proxy_next_upstream 模块定义的错误</span><br><span class="line"># fail_timeout:max_fails 次失败后，暂停的时间。</span><br><span class="line"># backup：其它所有的非 backup 机器 down 或者忙的时候，请求 backup 机器。所以这台机器压力会最轻</span><br><span class="line"></span><br><span class="line"># 在需要使用负载的 Server 节点下添加</span><br><span class="line">proxy_pass http://myServer;</span><br></pre></td></tr></table></figure>
         
             <div class="donate-container">
     <div class="donate-button">
