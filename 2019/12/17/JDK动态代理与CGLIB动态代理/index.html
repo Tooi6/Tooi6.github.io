@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        JDK动态代理与CGLIB动态代理 - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理模式"><span class="toc-text">代理模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是代理模式？"><span class="toc-text">什么是代理模式？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要用动态"><span class="toc-text">为什么要用动态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDK的动态代理"><span class="toc-text">JDK的动态代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cglib动态代理"><span class="toc-text">cglib动态代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cglib动态代理与jdk动态代理区别"><span class="toc-text">cglib动态代理与jdk动态代理区别</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        JDK动态代理与CGLIB动态代理
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-17 10:36:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Swagger2" title="Swagger2">Swagger2</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><h4 id="什么是代理模式？"><a href="#什么是代理模式？" class="headerlink" title="什么是代理模式？"></a>什么是代理模式？</h4><blockquote>
+<p><strong>定义：</strong> 给目标对象提供一个代理对象，并由代理对象对目标对象的引用。代理对象和目标对象需要实现同一个接口。  </p>
+</blockquote>
+<p><img src="https://note.youdao.com/yws/api/personal/file/423F6FB82F574D4784FE208A61DD63DD?method=download&shareKey=d5185122b7702ca2f8828c4b3c849ca7" alt="image">  </p>
+<h4 id="为什么要用动态"><a href="#为什么要用动态" class="headerlink" title="为什么要用动态"></a>为什么要用动态</h4><ul>
+<li><strong>在不改变目标对象的情况下对方法进行增强</strong>  </li>
+</ul>
+<h3 id="JDK的动态代理"><a href="#JDK的动态代理" class="headerlink" title="JDK的动态代理"></a>JDK的动态代理</h3><blockquote>
+<p>JDK的动态代理主页涉及到java.lang.reflect 包中的两个类：<strong>Proxy</strong> 和 <strong>InvocationHandler</strong>  </p>
+</blockquote>
+<blockquote>
+<p>InvocationHandler是一个接口，<strong>通过实现该接口定义横切逻辑</strong>，并通过<strong>反射机制</strong>调用目标类的代码，动态将横切逻辑和业务逻辑编制在一起。<strong>Proxy 利用 InvocationHandler 动态创建 一个符合某一接口的实例，生成目标类的代理对象。</strong></p>
+</blockquote>
+<ul>
+<li><strong>创建接口和目标类</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public interface Star &#123;</span><br><span class="line">    String sing();</span><br><span class="line"></span><br><span class="line">    String dance();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class LiuDeHua implements Star &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String sing() &#123;</span><br><span class="line">        System.out.println(&quot;给我一杯忘情水&quot;);</span><br><span class="line">        return &quot;唱完&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String dance() &#123;</span><br><span class="line">        System.out.println(&quot;开心的马骝&quot;);</span><br><span class="line">        return &quot;跳完&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>创建代理类，继承InvocationHandler</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.reflect.InvocationHandler;</span><br><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line">public class StarProxy implements InvocationHandler &#123;</span><br><span class="line">    // 目标类，也就是被代理对象</span><br><span class="line">    private Object target;</span><br><span class="line"></span><br><span class="line">    public void setTarget(Object target) &#123;</span><br><span class="line">        this.target = target;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">        // 这里可以做增强</span><br><span class="line">        System.out.println(&quot;收钱&quot;);</span><br><span class="line"></span><br><span class="line">        Object result = method.invoke(target, args);</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 生成代理类</span><br><span class="line">    public Object CreatProxyObj() &#123;</span><br><span class="line">        return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>测试</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    // 创建被代理对象</span><br><span class="line">    Star ldh = new LiuDeHua();</span><br><span class="line">    // 创建代理对象</span><br><span class="line">    StarProxy proxy = new StarProxy();</span><br><span class="line">    /// 设置被代理对象</span><br><span class="line">    proxy.setTarget(ldh);</span><br><span class="line">    // 生成代理类</span><br><span class="line">    Star obj = (Star) proxy.CreatProxyObj();</span><br><span class="line">    obj.dance();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>运行结果</strong>  </li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/6645929B2D5E4D32B736BDC1E7A5F2C0?method=download&shareKey=e9dbdf3b18804407e0c84db2118a7c11" alt="image"></p>
+<h4 id="cglib动态代理"><a href="#cglib动态代理" class="headerlink" title="cglib动态代理"></a>cglib动态代理</h4><blockquote>
+<p><strong>CGLib全称为Code Generation Library</strong>，是一个强大的高性能，高质量的代码生成类库， 可以在<strong>运行期扩展 Java 类与实现 Java 接口</strong>，CGLib 封装了 asm，可以再<strong>运行期动态生成新的 class</strong>。和 JDK 动态代理相比较：<strong>JDK 创建代理有一个限制，就是只能为接口创建代理实例，而对于没有通过接口定义业务方法的类，则可以通过CGLib创建动态代理。</strong>   </p>
+</blockquote>
+<ul>
+<li><strong>创建Cglib代理类</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import java.lang.reflect.Method;</span><br><span class="line">import net.sf.cglib.proxy.Enhancer;</span><br><span class="line">import net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line">import net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"></span><br><span class="line">public class CglibProxy implements MethodInterceptor &#123;</span><br><span class="line">    // 根据一个类型产生代理类，此方法不要求一定放在MethodInterceptor中</span><br><span class="line">    public Object CreatProxyedObj(Class&lt;?&gt; clazz) &#123;</span><br><span class="line">        Enhancer enhancer = new Enhancer();</span><br><span class="line">        enhancer.setSuperclass(clazz);</span><br><span class="line">        enhancer.setCallback(this);</span><br><span class="line">        return enhancer.create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable &#123;</span><br><span class="line">        System.out.println(&quot;收钱&quot;);</span><br><span class="line">        return proxy.invokeSuper(obj, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>测试</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Star ldh=new LiuDeHua();</span><br><span class="line">    CglibProxy proxy=new CglibProxy();</span><br><span class="line">    Star star= (Star) proxy.CreatProxyedObj(ldh.getClass());</span><br><span class="line">    star.sing();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行结果</strong>  </li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C9A50BC9B71E49BD90732DA7CD2CC81D?method=download&shareKey=bb1df5e9312f2e8435a0795be64f8752" alt="image">  </p>
+<h4 id="cglib动态代理与jdk动态代理区别"><a href="#cglib动态代理与jdk动态代理区别" class="headerlink" title="cglib动态代理与jdk动态代理区别"></a>cglib动态代理与jdk动态代理区别</h4><blockquote>
+<p>jdk创建对象的速度远大于cglib，这是由于cglib创建对象时需要操作字节码。cglib执行速度略大于jdk，所以比较适合单例模式。另外由于CGLIB的大部分类是直接对Java字节码进行操作，这样生成的类会在Java的永久堆中。如果动态代理操作过多，容易造成永久堆满，触发OutOfMemory异常。spring默认使用jdk动态代理，如果类没有接口，则使用cglib。</p>
+</blockquote>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
