@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        异步消息协议 JMS 、AMQP - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JMS"><span class="toc-text">JMS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JMS两种消息模型"><span class="toc-text">JMS两种消息模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSM的消息正文格式"><span class="toc-text">JSM的消息正文格式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AMQP"><span class="toc-text">AMQP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JMS-对比-AMQP"><span class="toc-text">JMS 对比 AMQP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        异步消息协议 JMS 、AMQP
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-18 23:36:03</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#JMS" title="JMS">JMS</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#AMQP" title="AMQP">AMQP</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><blockquote>
+<p>　<strong>JMS（JAVA Message Service,java消息服务）</strong> 是java的消息服务，JMS的客户端之间可以通过JMS服务进行异步的消息传输。JMS（JAVA Message Service，Java消息服务）API是一个消息服务的<strong>标准</strong>或者说是<strong>规范</strong>，允许应用程序组件基于JavaEE平台创建、发送、接收和读取消息。<strong>它使分布式通信耦合度更低，消息服务更加可靠以及异步性。</strong></p>
+</blockquote>
+<h4 id="JMS两种消息模型"><a href="#JMS两种消息模型" class="headerlink" title="JMS两种消息模型"></a>JMS两种消息模型</h4><ul>
+<li><p>点到点（P2P）模型  </p>
+<blockquote>
+<p>使用<strong>队列（Queue）作为消息通信载体；满足生产者与消费者模式</strong>，一条消息只能被一个消费者使用，未被消费的消息在队列中保留直到被消费或超时。<br><img src="https://note.youdao.com/yws/api/personal/file/83BCC612E61742519B866EFF1DE156DE?method=download&shareKey=0fb6ae11af28be870b37f1dafd774bd8" alt="image"></p>
+</blockquote>
+</li>
+<li><p><strong>发布/订阅（Pub/Sub）模型</strong>  </p>
+<blockquote>
+<p>发布订阅模型（Pub/Sub） 使用<strong>主题（Topic）作为消息通信载体，类似于广播模式</strong>；发布者发布一条消息，该消息通过主题传递给所有的订阅者，<strong>在一条消息广播之后才订阅的用户则是收不到该条消息的</strong>。<br><img src="https://note.youdao.com/yws/api/personal/file/0D4246AE663145E2A48B6DFFD08B5C36?method=download&shareKey=fc3527441f3c73f2ea633b0a3bab4ed8" alt="image">  </p>
+</blockquote>
+</li>
+</ul>
+<h4 id="JSM的消息正文格式"><a href="#JSM的消息正文格式" class="headerlink" title="JSM的消息正文格式"></a>JSM的消息正文格式</h4><ul>
+<li><strong>StreamMessage</strong> ：  Java原始值的数据流  </li>
+<li><strong>MapMessage</strong> ： 一套名称-值对  </li>
+<li><strong>TextMessage</strong> ： 一个字符串对象  </li>
+<li><strong>ObjectMessage</strong> ： 一个序列化的 Java对象  </li>
+<li><strong>BytesMessage</strong> ： 一个字节的数据流  </li>
+</ul>
+<h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><blockquote>
+<p><strong>AMQP，即Advanced Message Queuing Protocol</strong>，一个提供统一消息服务的应用层标准 <strong>高级消息队列协议</strong>（二进制应用层协议），是应用层协议的一个开放标准,为面向消息的中间件设计，兼容 JMS。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件同产品，不同的开发语言等条件的限制。</p>
+</blockquote>
+<h3 id="JMS-对比-AMQP"><a href="#JMS-对比-AMQP" class="headerlink" title="JMS 对比 AMQP"></a>JMS 对比 AMQP</h3><table>
+<thead>
+<tr>
+<th>比方向</th>
+<th>JMS</th>
+<th>AMQP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定义</td>
+<td>Java API</td>
+<td>协议</td>
+</tr>
+<tr>
+<td>跨语言</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>跨平台</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>支持消息类型</td>
+<td>提供两种消息模型：①Peer-2-Peer;②Pub/sub</td>
+<td>提供了五种消息模型：①direct exchange；②fanout exchange；③topic change；④headers exchange；⑤system exchange。本质来讲，后四种和JMS的pub/sub模型没有太大差别，仅是在路由机制上做了更详细的划分；</td>
+</tr>
+<tr>
+<td>支持消息类型</td>
+<td>支持多种消息类型 ，我们在上面提到过</td>
+<td>byte[]（二进制）</td>
+</tr>
+</tbody></table>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>AMQP 为消息定义了<strong>线路层（wire-level protocol）的协议</strong>，而JMS所定义的是<strong>API规范</strong>。在 Java 体系中，多个client均可以通过JMS进行交互，不需要应用修改代码，但是其对跨平台的支持较差。而AMQP天然具有跨平台、跨语言特性。    </li>
+<li>JMS 支持<strong>TextMessage、MapMessage</strong> 等复杂的消息类型；而 AMQP 仅支持 <strong>byte[] 消息类型</strong>（复杂的类型可序列化后发送）。  </li>
+<li>由于Exchange 提供的路由算法，AMQP可以提<strong>供多样化的路由方式</strong>来传递消息到消息队列，而 JMS 仅支持 队列 和 主题/订阅 方式两种。  </li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

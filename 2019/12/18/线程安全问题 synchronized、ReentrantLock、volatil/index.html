@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="Tooi">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        线程安全问题 synchronized、ReentrantLock、volatile - Tooi的博客 | Tooi-Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 瞄准月亮。 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Tooi6</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是是进程、线程？"><span class="toc-text">什么是是进程、线程？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要有多线程？"><span class="toc-text">为什么要有多线程？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建多线程"><span class="toc-text">创建多线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决线程安全问题"><span class="toc-text">解决线程安全问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile-关键字"><span class="toc-text">volatile 关键字</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 瞄准月亮。 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        线程安全问题 synchronized、ReentrantLock、volatile
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-18 22:05:30</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#多线程" title="多线程">多线程</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#synchronized" title="synchronized">synchronized</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#ReentrantLock" title="ReentrantLock">ReentrantLock</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#volatile" title="volatile">volatile</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="什么是是进程、线程？"><a href="#什么是是进程、线程？" class="headerlink" title="什么是是进程、线程？"></a>什么是是进程、线程？</h4><blockquote>
+<p><strong>进程：</strong> 进程是可并发执行的程序在某个数据集合上的一次计算活动，也是<strong>操作系统进行资源分配和调度的基本单位。</strong><br><strong>线程：</strong> 进程想要执行任务就需要依赖线程。换句话说，就是<strong>进程中的最小执行单位就是线程</strong>，并且一个进程中至少有一个线程。  </p>
+</blockquote>
+<h4 id="为什么要有多线程？"><a href="#为什么要有多线程？" class="headerlink" title="为什么要有多线程？"></a>为什么要有多线程？</h4><blockquote>
+<p><strong>提高CPU的利用率、提高计算效率</strong></p>
+</blockquote>
+<h4 id="创建多线程"><a href="#创建多线程" class="headerlink" title="创建多线程"></a>创建多线程</h4><ul>
+<li><strong>继承 Thread</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class MyThread extends Thread &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        super.run();</span><br><span class="line">        System.out.println(&quot;hello thread！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ThreadCreateDemo1 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyThread thread=new MyThread();</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>实现 Runnable 接口</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class MyRunnable implements Runnable&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        System.out.println(&quot;hello runnable&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ThreadCreateDemo2 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Runnable runnable=new MyRunnable();</span><br><span class="line">        Thread thread=new Thread(runnable);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>实现 Callable 接口（有返回值）</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class MyCallable implements Callable&lt;String&gt;&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String call() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;hello callable&quot;);</span><br><span class="line">        return &quot;result&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ThreadCreateDemo3 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MyCallable myCallable = new MyCallable();</span><br><span class="line">        FutureTask&lt;String&gt; futureTask = new FutureTask&lt;&gt;(myCallable);</span><br><span class="line">        new Thread(futureTask).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决线程安全问题"><a href="#解决线程安全问题" class="headerlink" title="解决线程安全问题"></a>解决线程安全问题</h4><blockquote>
+<p><strong>解决线程安全的根本方法</strong>就是：<strong>同一时刻有且只有一个线程在操作共享数据</strong>，其他线程必须等到该线程处理完数据后再对共享数据进行操作。  </p>
+</blockquote>
+<blockquote>
+<p>解决线程安全问题有两种方法，一是使用 synchronized 锁代码块/方法区，二是使用 ReentrantLock 加锁<br>需要注意的是，synchronized锁的不是代码，而是对象</p>
+</blockquote>
+<p>下面提供一个买票的例子  </p>
+<ul>
+<li><strong>线程不安全列子</strong><blockquote>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadUnSecurity &#123;</span><br><span class="line"></span><br><span class="line">    static int tickets = 10;</span><br><span class="line"></span><br><span class="line">    class SellTickets implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            // 未加同步时产生脏数据</span><br><span class="line">            while (tickets &gt; 0) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + &quot;---&gt;售出第：  &quot; + tickets + &quot; 票&quot;);</span><br><span class="line">                tickets--;</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (tickets &lt;= 0) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + &quot;---&gt;售票结束！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SellTickets sell = new ThreadUnSecurity().new SellTickets();</span><br><span class="line">        Thread thread1 = new Thread(sell, &quot;1号窗口&quot;);</span><br><span class="line">        Thread thread2 = new Thread(sell, &quot;2号窗口&quot;);</span><br><span class="line">        Thread thread3 = new Thread(sell, &quot;3号窗口&quot;);</span><br><span class="line">        Thread thread4 = new Thread(sell, &quot;4号窗口&quot;);</span><br><span class="line">        Thread thread5 = new Thread(sell, &quot;5号窗口&quot;);</span><br><span class="line">        thread1.start();</span><br><span class="line">        thread2.start();</span><br><span class="line">        thread3.start();</span><br><span class="line">        thread4.start();</span><br><span class="line">        thread5.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>运行结果</strong>  </li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/6E1037C2D0944380833E3B55A1E1F534?method=download&shareKey=4311fc0d8262148e18fdbd564cff3072" alt="image"></p>
+<blockquote>
+<p>同一张票被出售多次。  </p>
+</blockquote>
+<ul>
+<li><strong>使用 synchronized 同步代码块</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadSynchronizedSecurity &#123;</span><br><span class="line">    static int tickets = 5;</span><br><span class="line">    class SellTickets implements Runnable &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while (tickets &gt; 0) &#123;</span><br><span class="line">                // 加锁</span><br><span class="line">                synchronized (this) &#123;</span><br><span class="line">                    if(tickets&lt;=0) return;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + &quot;---&gt;售出第：  &quot; + tickets + &quot; 票&quot;);</span><br><span class="line">                    tickets--;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        Thread.sleep(1000);</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (tickets &lt;= 0) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + &quot;---&gt;售票结束！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>运行结果</strong>  </li>
+</ul>
+<p><img src="https://note.youdao.com/yws/api/personal/file/A35EC5F0AD9E464488B8999ECBFFA045?method=download&shareKey=a483019add9f48eba5070161a63db429" alt="image"></p>
+<ul>
+<li><strong>使用 synchronized 同步方法</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class ThreadSynchronizedMethodSecurity &#123;</span><br><span class="line"></span><br><span class="line">    static int tickets = 5;</span><br><span class="line"></span><br><span class="line">    class SellTickets implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            // 同步方法</span><br><span class="line">            while (tickets &gt; 0) &#123;</span><br><span class="line">                synMethod();</span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (tickets &lt;= 0) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + &quot;---&gt;售票结束！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 使用synchronized修饰，同步方法</span><br><span class="line">    synchronized void synMethod() &#123;</span><br><span class="line">        synchronized (this)&#123;</span><br><span class="line">            if (tickets &lt;=0) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+&quot;----&gt;售出第 &quot;+tickets+&quot; 票 &quot;);</span><br><span class="line">            tickets-- ;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>使用Lock加锁</strong>  </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">import java.util.concurrent.locks.Lock;</span><br><span class="line">import java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line">public class ThreadLockSecurity &#123;</span><br><span class="line">    static int tickets = 5;</span><br><span class="line"></span><br><span class="line">    class SellTickets implements Runnable &#123;</span><br><span class="line">        Lock lock = new ReentrantLock();</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            // 未加同步时产生脏数据</span><br><span class="line">            while (tickets &gt; 0) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    // 加锁 </span><br><span class="line">                    lock.lock();</span><br><span class="line">                    if (tickets &lt;= 0) return;</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + &quot;---&gt;售出第：  &quot; + tickets + &quot; 票&quot;);</span><br><span class="line">                    tickets--;</span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; finally &#123;</span><br><span class="line">                    // 解锁</span><br><span class="line">                    lock.unlock();</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                try &#123;</span><br><span class="line">                    Thread.sleep(1000);</span><br><span class="line">                &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (tickets &lt;= 0) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + &quot;---&gt;售票结束！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>synchronized 和 ReentrantLock 的区别</strong>  <blockquote>
+<p>①两者都是<strong>可重入锁</strong>（自己可以再次获取自己的内部锁）<br>② synchronized 是<strong>关键字</strong>，依赖于 JVM 而 ReentrantLock 是<strong>类</strong>，依赖于 API<br>③ ReentrantLock 比 synchronized 增加了一些高级功能：<br>1、等待可中断；<br>2、可实现公平锁；<br>3、可实现选择性通知（锁可以绑定多个条件）</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="volatile-关键字"><a href="#volatile-关键字" class="headerlink" title="volatile 关键字"></a>volatile 关键字</h4><blockquote>
+<p>一个变量声明为volatile，就意味着这个变量是随时会被其他线程修改的，因此<strong>不能将它cache在线程memory中</strong>  </p>
+</blockquote>
+<ul>
+<li><p><strong>volatile 与 synchronized 的区别</strong>  </p>
+<blockquote>
+<p>synchronized加锁机制<strong>既可以确保可见性，又可以确保原子性</strong>；<br>而<strong>Volitile变量只能确保可见性</strong>。  </p>
+</blockquote>
+</li>
+<li><p><strong>可见性？原子性？</strong>   </p>
+<blockquote>
+<p><strong>可见性：</strong> 指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。  </p>
+</blockquote>
+</li>
+</ul>
+<p><strong>原子性：</strong> 是指线程的多个操作是一个整体，不能被分割，要么就不执行，要么就全部执行完，中间不能被打断</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.png">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Tooi6">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/Tooi6" target="_blank" rel="noopener">Tooi6</a></span>
+        <span>/</span>
+        
+        <span><a href="#">Tooi-Blog</a></span>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
